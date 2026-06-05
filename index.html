@@ -466,4 +466,483 @@
   <nav class="header-nav">
     <button class="nav-link active" onclick="filterCategory('all',this)">All</button>
     <button class="nav-link" onclick="filterCategory('electronics',this)">📱 Electronics</button>
-    <button class="nav-link" onclick="
+    <button class="nav-link" onclick="filterCategory('fashion',this)">👗 Fashion</button>
+    <button class="nav-link" onclick="filterCategory('home',this)">🏠 Home & Living</button>
+    <button class="nav-link" onclick="filterCategory('sports',this)">⚽ Sports</button>
+    <button class="nav-link" onclick="filterCategory('beauty',this)">💄 Beauty</button>
+    <button class="nav-link" onclick="filterCategory('food',this)">🍎 Food & Grocery</button>
+    <button class="nav-link" onclick="filterCategory('toys',this)">🎮 Toys & Games</button>
+    <button class="nav-link" onclick="filterCategory('books',this)">📚 Books</button>
+    <button class="nav-link" onclick="filterCategory('auto',this)">🚗 Automotive</button>
+  </nav>
+</header>
+
+<!-- CART OVERLAY + SIDEBAR -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <h3>🛒 Your Cart</h3>
+    <button class="cart-close" onclick="closeCart()">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-footer" id="cartFooter">
+    <div class="cart-total">
+      <span>Total Amount</span>
+      <strong id="cartTotal">₹0</strong>
+    </div>
+    <button class="checkout-btn" onclick="checkout()">Proceed to Checkout →</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- HERO -->
+<div class="hero" id="hero">
+  <div class="hero-slides" id="heroSlides">
+    <div class="hero-slide">
+      <div class="hero-content">
+        <span class="hero-tag">🔥 Mega Sale — Up to 70% Off</span>
+        <h1 class="hero-title">Next-Gen Electronics at Unbeatable Prices</h1>
+        <p class="hero-subtitle">Shop the latest smartphones, laptops, earbuds & more from top brands</p>
+        <button class="hero-cta" onclick="filterCategory('electronics', document.querySelector('.nav-link:nth-child(2)'))">Shop Electronics →</button>
+      </div>
+      <div class="hero-image">📱</div>
+    </div>
+    <div class="hero-slide">
+      <div class="hero-content">
+        <span class="hero-tag">✨ New Arrivals — Fashion Week</span>
+        <h1 class="hero-title">Style That Speaks Before You Do</h1>
+        <p class="hero-subtitle">Trending outfits, accessories & footwear for every occasion</p>
+        <button class="hero-cta" onclick="filterCategory('fashion', document.querySelector('.nav-link:nth-child(3)'))">Explore Fashion →</button>
+      </div>
+      <div class="hero-image">👗</div>
+    </div>
+    <div class="hero-slide">
+      <div class="hero-content">
+        <span class="hero-tag">🏡 Home Essentials — Refresh Your Space</span>
+        <h1 class="hero-title">Transform Your Home with Premium Decor</h1>
+        <p class="hero-subtitle">Furniture, appliances, and décor to make your home a paradise</p>
+        <button class="hero-cta" onclick="filterCategory('home', document.querySelector('.nav-link:nth-child(4)'))">Shop Home →</button>
+      </div>
+      <div class="hero-image">🏠</div>
+    </div>
+  </div>
+  <button class="hero-prev" onclick="changeSlide(-1)">‹</button>
+  <button class="hero-next" onclick="changeSlide(1)">›</button>
+  <div class="hero-dots" id="heroDots"></div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- FEATURES -->
+  <div class="features">
+    <div class="feature-card"><span class="feature-icon">🚚</span><div class="feature-text"><h4>Free Delivery</h4><p>On orders above ₹499</p></div></div>
+    <div class="feature-card"><span class="feature-icon">🔄</span><div class="feature-text"><h4>Easy Returns</h4><p>30-day hassle-free return</p></div></div>
+    <div class="feature-card"><span class="feature-icon">🔒</span><div class="feature-text"><h4>Secure Payment</h4><p>100% encrypted checkout</p></div></div>
+    <div class="feature-card"><span class="feature-icon">🎧</span><div class="feature-text"><h4>24/7 Support</h4><p>Always here to help you</p></div></div>
+    <div class="feature-card"><span class="feature-icon">💯</span><div class="feature-text"><h4>Genuine Products</h4><p>Only authentic brands</p></div></div>
+  </div>
+
+  <!-- CATEGORIES -->
+  <div class="categories" id="catStrip"></div>
+
+  <!-- DEALS SECTION -->
+  <div class="deals-banner">
+    <div class="deals-text">
+      <h2>⚡ Flash Deals of the Day</h2>
+      <p>Hurry up! Limited stock at incredibly low prices</p>
+    </div>
+    <div class="countdown" id="countdown">
+      <div class="countdown-unit"><span class="countdown-num" id="ch">00</span><div class="countdown-label">Hours</div></div>
+      <div class="countdown-unit"><span class="countdown-num" id="cm">00</span><div class="countdown-label">Mins</div></div>
+      <div class="countdown-unit"><span class="countdown-num" id="cs">00</span><div class="countdown-label">Secs</div></div>
+    </div>
+  </div>
+
+  <!-- BANNER GRID -->
+  <div class="banner-grid">
+    <div class="mini-banner">
+      <h3>Beauty & Skincare</h3>
+      <p>Premium products, glow guaranteed</p>
+      <button class="shop-btn" onclick="filterCategory('beauty', document.querySelector('.nav-link:nth-child(6)'))">Shop Now</button>
+      <span class="banner-emoji">💄</span>
+    </div>
+    <div class="mini-banner">
+      <h3>Sports & Fitness</h3>
+      <p>Gear up for your best performance</p>
+      <button class="shop-btn" onclick="filterCategory('sports', document.querySelector('.nav-link:nth-child(5)'))">Shop Now</button>
+      <span class="banner-emoji">🏋️</span>
+    </div>
+  </div>
+
+  <!-- PRODUCT SECTION -->
+  <div class="section">
+    <div class="section-header">
+      <h2 class="section-title" id="sectionTitle">🛍️ All Products</h2>
+      <span class="see-all" onclick="filterCategory('all', document.querySelector('.nav-link'))">See All →</span>
+    </div>
+    <div class="product-grid" id="productGrid"></div>
+  </div>
+
+  <!-- TRENDING -->
+  <div class="section" id="trendingSection">
+    <div class="section-header">
+      <h2 class="section-title">🔥 Trending Now</h2>
+    </div>
+    <div class="product-scroll" id="trendingGrid"></div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h4>🛍️ Whisele Shopping</h4>
+      <p style="font-size:13px;margin-bottom:12px;">Your one-stop destination for everything you love. Shop smart, shop Whisele!</p>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <a>About Us</a><a>Careers</a><a>Blog</a><a>Press</a>
+    </div>
+    <div class="footer-col">
+      <h4>Help & Support</h4>
+      <a>Track Order</a><a>Returns</a><a>FAQ</a><a>Contact Us</a>
+    </div>
+    <div class="footer-col">
+      <h4>Policies</h4>
+      <a>Privacy Policy</a><a>Terms of Use</a><a>Shipping Policy</a><a>Refund Policy</a>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <a>📘 Facebook</a><a>📸 Instagram</a><a>🐦 Twitter / X</a><a>▶️ YouTube</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-logo">Whisele<span>Shopping</span>.com</div>
+    <p style="margin-top:8px">© 2025 Whisele Shopping. All rights reserved. Made with ❤️ in India.</p>
+  </div>
+</footer>
+
+<script>
+const products = [
+  // Electronics
+  { id:1, name:"Apple iPhone 15 Pro Max 256GB Natural Titanium", price:134900, oldPrice:149900, rating:4.8, reviews:12450, emoji:"📱", category:"electronics", badge:"hot", img:"https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=300&q=80" },
+  { id:2, name:"Samsung Galaxy S25 Ultra 12GB+512GB Titanium Blue", price:119999, oldPrice:139999, rating:4.7, reviews:8320, emoji:"📱", category:"electronics", badge:"new", img:"https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=300&q=80" },
+  { id:3, name:"Sony WH-1000XM5 Wireless Noise Cancelling Headphones", price:24990, oldPrice:34990, rating:4.9, reviews:5670, emoji:"🎧", category:"electronics", badge:"sale", img:"https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=300&q=80" },
+  { id:4, name:"MacBook Air M3 13-inch 16GB 512GB Midnight", price:139900, oldPrice:154900, rating:4.9, reviews:3210, emoji:"💻", category:"electronics", badge:"hot", img:"https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=300&q=80" },
+  { id:5, name:"Apple Watch Series 9 GPS 45mm Starlight Aluminium", price:41900, oldPrice:48900, rating:4.8, reviews:7890, emoji:"⌚", category:"electronics", img:"https://images.unsplash.com/photo-1551816230-ef5deaed4a26?w=300&q=80" },
+  { id:6, name:"Sony 4K OLED Smart TV 55 inch Google TV", price:89990, oldPrice:119990, rating:4.7, reviews:2340, emoji:"📺", category:"electronics", badge:"sale", img:"https://images.unsplash.com/photo-1593784991095-a205069470b6?w=300&q=80" },
+  { id:7, name:"iPad Pro 12.9 inch M2 Chip WiFi 256GB Silver", price:109900, oldPrice:129900, rating:4.8, reviews:4560, emoji:"📱", category:"electronics", img:"https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=300&q=80" },
+  { id:8, name:"DJI Mini 4 Pro Drone with RC2 Remote Controller", price:79900, oldPrice:89900, rating:4.7, reviews:1230, emoji:"🚁", category:"electronics", badge:"new", img:"https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=300&q=80" },
+
+  // Fashion
+  { id:9, name:"Levis 501 Original Fit Jeans Dark Wash Indigo", price:3999, oldPrice:5999, rating:4.5, reviews:9870, emoji:"👖", category:"fashion", img:"https://images.unsplash.com/photo-1542272604-787c3835535d?w=300&q=80" },
+  { id:10, name:"Nike Air Max 270 React Premium Running Shoes", price:11995, oldPrice:14995, rating:4.6, reviews:6780, emoji:"👟", category:"fashion", badge:"hot", img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300&q=80" },
+  { id:11, name:"Zara Premium Trench Coat Camel Winter Collection", price:7999, oldPrice:12999, rating:4.4, reviews:3450, emoji:"🧥", category:"fashion", badge:"sale", img:"https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=300&q=80" },
+  { id:12, name:"Ray-Ban Aviator Classic Polarized Sunglasses Gold", price:8490, oldPrice:10990, rating:4.7, reviews:5670, emoji:"🕶️", category:"fashion", img:"https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=300&q=80" },
+  { id:13, name:"Louis Vuitton Inspired Tote Bag Premium Canvas", price:4999, oldPrice:8999, rating:4.3, reviews:2340, emoji:"👜", category:"fashion", badge:"new", img:"https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=300&q=80" },
+  { id:14, name:"Adidas Ultraboost 22 Primeblue Running Shoes White", price:10995, oldPrice:13995, rating:4.6, reviews:7890, emoji:"👟", category:"fashion", img:"https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=300&q=80" },
+
+  // Home
+  { id:15, name:"Dyson V15 Detect Absolute Cordless Vacuum Cleaner", price:52900, oldPrice:62900, rating:4.8, reviews:4560, emoji:"🌀", category:"home", badge:"hot", img:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&q=80" },
+  { id:16, name:"IKEA POÄNG Armchair Birch Veneer Cushion Set", price:12999, oldPrice:17999, rating:4.5, reviews:3210, emoji:"🪑", category:"home", img:"https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=300&q=80" },
+  { id:17, name:"Instant Pot Duo 7-in-1 Electric Pressure Cooker 6L", price:7999, oldPrice:11999, rating:4.7, reviews:8900, emoji:"🍲", category:"home", badge:"sale", img:"https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=300&q=80" },
+  { id:18, name:"Philips Hue Smart Bulb 4-Pack Color Changing LED", price:4999, oldPrice:6999, rating:4.6, reviews:5670, emoji:"💡", category:"home", img:"https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=300&q=80" },
+  { id:19, name:"Saatva Classic Organic Cotton Bed Sheet Set King", price:8999, oldPrice:12999, rating:4.8, reviews:2340, emoji:"🛏️", category:"home", badge:"new", img:"https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=300&q=80" },
+  { id:20, name:"Nespresso Vertuo Next Premium Coffee Machine Black", price:14990, oldPrice:19990, rating:4.7, reviews:6780, emoji:"☕", category:"home", img:"https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=300&q=80" },
+
+  // Sports
+  { id:21, name:"Fitbit Charge 6 Fitness Tracker with GPS Black", price:14999, oldPrice:18999, rating:4.5, reviews:4560, emoji:"⌚", category:"sports", badge:"new", img:"https://images.unsplash.com/photo-1575311373937-040b8e1fd5b6?w=300&q=80" },
+  { id:22, name:"Wilson Pro Staff RF97 Tennis Racket Roger Federer Edition", price:24999, oldPrice:32999, rating:4.8, reviews:1230, emoji:"🎾", category:"sports", img:"https://images.unsplash.com/photo-1617421762774-f5b5dce5e9e2?w=300&q=80" },
+  { id:23, name:"Decathlon Adjustable Dumbbell Set 5-25kg Premium", price:8999, oldPrice:13999, rating:4.6, reviews:7890, emoji:"🏋️", category:"sports", badge:"hot", img:"https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=300&q=80" },
+  { id:24, name:"Yonex Nanoflare 800 Pro Badminton Racket", price:6999, oldPrice:9999, rating:4.7, reviews:3450, emoji:"🏸", category:"sports", img:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&q=80" },
+
+  // Beauty
+  { id:25, name:"Charlotte Tilbury Pillow Talk Lipstick Nude Rose", price:3500, oldPrice:4500, rating:4.8, reviews:12340, emoji:"💄", category:"beauty", badge:"hot", img:"https://images.unsplash.com/photo-1586495777744-4e6232a10b0a?w=300&q=80" },
+  { id:26, name:"The Ordinary Niacinamide 10% Zinc 1% Serum 30ml", price:1290, oldPrice:1890, rating:4.6, reviews:23450, emoji:"🧴", category:"beauty", img:"https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=300&q=80" },
+  { id:27, name:"Dyson Airwrap Multi-Styler Complete Long Nickel Copper", price:44900, oldPrice:54900, rating:4.7, reviews:8900, emoji:"💇", category:"beauty", badge:"new", img:"https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=300&q=80" },
+  { id:28, name:"Kérastase Blond Absolu Anti-Brass Purple Hair Mask", price:3200, oldPrice:4200, rating:4.5, reviews:5670, emoji:"🧴", category:"beauty", img:"https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?w=300&q=80" },
+
+  // Food
+  { id:29, name:"Organic India Tulsi Green Tea 25 Bags Pack of 2", price:399, oldPrice:598, rating:4.6, reviews:18900, emoji:"🍵", category:"food", img:"https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=300&q=80" },
+  { id:30, name:"Himalaya Honey Pure & Natural 500g Premium Quality", price:299, oldPrice:449, rating:4.7, reviews:23400, emoji:"🍯", category:"food", badge:"sale", img:"https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=300&q=80" },
+  { id:31, name:"California Almonds Raw Unsalted Premium 1kg Bag", price:899, oldPrice:1299, rating:4.8, reviews:12300, emoji:"🥜", category:"food", img:"https://images.unsplash.com/photo-1508061253366-f7da158b6d46?w=300&q=80" },
+  { id:32, name:"Nescafé Gold Blend Instant Coffee 200g Jar", price:749, oldPrice:950, rating:4.5, reviews:34500, emoji:"☕", category:"food", badge:"hot", img:"https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=300&q=80" },
+
+  // Toys
+  { id:33, name:"LEGO Technic Bugatti Chiron 3599 Pieces 42083", price:36999, oldPrice:44999, rating:4.9, reviews:4560, emoji:"🧱", category:"toys", badge:"hot", img:"https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=300&q=80" },
+  { id:34, name:"PlayStation 5 Console Disc Edition 825GB SSD", price:54990, oldPrice:59990, rating:4.8, reviews:9870, emoji:"🎮", category:"toys", badge:"new", img:"https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=300&q=80" },
+  { id:35, name:"Barbie Dreamhouse 2023 3-Storey Playset with Accessories", price:14999, oldPrice:19999, rating:4.6, reviews:3450, emoji:"🏠", category:"toys", img:"https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=300&q=80" },
+  { id:36, name:"Hot Wheels 100-Car Storage Case with 3-Car Playset", price:2999, oldPrice:4499, rating:4.7, reviews:8900, emoji:"🚗", category:"toys", badge:"sale", img:"https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?w=300&q=80" },
+
+  // Books
+  { id:37, name:"Atomic Habits by James Clear — Paperback 2023 Edition", price:399, oldPrice:599, rating:4.9, reviews:67890, emoji:"📚", category:"books", badge:"hot", img:"https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=300&q=80" },
+  { id:38, name:"The Psychology of Money by Morgan Housel Hardcover", price:449, oldPrice:699, rating:4.8, reviews:45670, emoji:"💰", category:"books", img:"https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=300&q=80" },
+  { id:39, name:"Rich Dad Poor Dad 25th Anniversary Edition Robert Kiyosaki", price:299, oldPrice:499, rating:4.7, reviews:89000, emoji:"📖", category:"books", badge:"new", img:"https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=300&q=80" },
+
+  // Automotive
+  { id:40, name:"Bosch Car Jump Starter 12000mAh Portable Power Bank", price:3999, oldPrice:5999, rating:4.6, reviews:7890, emoji:"🔋", category:"auto", badge:"new", img:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&q=80" },
+  { id:41, name:"Michelin Pilot Sport 4S Performance Tyre 225/40 R18", price:12999, oldPrice:16999, rating:4.8, reviews:3450, emoji:"🏎️", category:"auto", badge:"hot", img:"https://images.unsplash.com/photo-1587620962725-abab19836100?w=300&q=80" },
+  { id:42, name:"Garmin DriveSmart 76 GPS Navigator 7 inch Display", price:15999, oldPrice:21999, rating:4.7, reviews:2340, emoji:"🗺️", category:"auto", img:"https://images.unsplash.com/photo-1501700493788-fa1a4fc9fe62?w=300&q=80" },
+];
+
+const categories = [
+  {id:'all', label:'All Products', icon:'🛍️'},
+  {id:'electronics', label:'Electronics', icon:'📱'},
+  {id:'fashion', label:'Fashion', icon:'👗'},
+  {id:'home', label:'Home & Living', icon:'🏠'},
+  {id:'sports', label:'Sports', icon:'⚽'},
+  {id:'beauty', label:'Beauty', icon:'💄'},
+  {id:'food', label:'Food & Grocery', icon:'🍎'},
+  {id:'toys', label:'Toys & Games', icon:'🎮'},
+  {id:'books', label:'Books', icon:'📚'},
+  {id:'auto', label:'Automotive', icon:'🚗'},
+];
+
+let cart = [];
+let wishlist = new Set();
+let currentCategory = 'all';
+let slideIndex = 0;
+let slideTimer;
+
+// Init category strip
+const catStrip = document.getElementById('catStrip');
+categories.forEach(cat => {
+  const pill = document.createElement('button');
+  pill.className = 'cat-pill' + (cat.id === 'all' ? ' active' : '');
+  pill.innerHTML = `<span class="cat-icon">${cat.icon}</span>${cat.label}`;
+  pill.onclick = () => { filterCategory(cat.id, null); updateCatPills(cat.id); };
+  catStrip.appendChild(pill);
+});
+
+function updateCatPills(id) {
+  document.querySelectorAll('.cat-pill').forEach((p,i) => p.classList.toggle('active', categories[i].id === id));
+}
+
+function stars(r) {
+  const full = Math.floor(r), half = r % 1 >= 0.5;
+  let s = '★'.repeat(full);
+  if (half) s += '½';
+  s += '☆'.repeat(5 - full - (half?1:0));
+  return s;
+}
+
+function fmtPrice(p) { return '₹' + p.toLocaleString('en-IN'); }
+
+function discount(old, cur) { return Math.round((old - cur) / old * 100); }
+
+function createCard(p) {
+  const d = p.oldPrice ? discount(p.oldPrice, p.price) : 0;
+  const badgeMap = { hot: 'hot', new: 'new', sale: '' };
+  const badgeLabel = { hot: '🔥 Hot', new: '✨ New', sale: `-${d}%` };
+  const card = document.createElement('div');
+  card.className = 'product-card';
+  card.innerHTML = `
+    ${p.badge ? `<span class="product-badge ${p.badge === 'new' ? 'new' : p.badge === 'hot' ? 'hot' : ''}">${badgeLabel[p.badge]||('-'+d+'%')}</span>` : (d>0 ? `<span class="product-badge">-${d}%</span>` : '')}
+    <button class="wishlist-btn ${wishlist.has(p.id)?'liked':''}" onclick="toggleWishlistItem(${p.id},this)" title="Add to Wishlist">
+      <svg width="16" height="16" fill="${wishlist.has(p.id)?'#e53935':'none'}" stroke="${wishlist.has(p.id)?'#e53935':'#999'}" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    </button>
+    <div class="product-img">
+      <img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.parentElement.innerHTML='<span style=font-size:80px>${p.emoji}</span>'">
+    </div>
+    <div class="product-info">
+      <div class="product-name">${p.name}</div>
+      <div class="product-rating">
+        <span class="stars">${stars(p.rating)}</span>
+        <span class="rating-count">(${p.reviews.toLocaleString()})</span>
+      </div>
+      <div class="product-pricing">
+        <span class="price">${fmtPrice(p.price)}</span>
+        ${p.oldPrice ? `<span class="price-old">${fmtPrice(p.oldPrice)}</span><span class="discount">${d}% off</span>` : ''}
+      </div>
+      <button class="add-cart-btn" onclick="addToCart(${p.id},this)">Add to Cart 🛒</button>
+    </div>`;
+  return card;
+}
+
+function renderProducts(list) {
+  const grid = document.getElementById('productGrid');
+  grid.innerHTML = '';
+  if (list.length === 0) {
+    grid.innerHTML = '<p style="color:var(--text-muted);padding:40px;text-align:center;grid-column:1/-1;">No products found. Try a different search!</p>';
+    return;
+  }
+  list.forEach(p => grid.appendChild(createCard(p)));
+}
+
+function renderTrending() {
+  const tg = document.getElementById('trendingGrid');
+  tg.innerHTML = '';
+  const trending = [...products].sort((a,b) => b.reviews - a.reviews).slice(0,10);
+  trending.forEach(p => tg.appendChild(createCard(p)));
+}
+
+function filterCategory(cat, btn) {
+  currentCategory = cat;
+  document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  updateCatPills(cat);
+  const titles = {
+    all: '🛍️ All Products', electronics: '📱 Electronics', fashion: '👗 Fashion',
+    home: '🏠 Home & Living', sports: '⚽ Sports', beauty: '💄 Beauty',
+    food: '🍎 Food & Grocery', toys: '🎮 Toys & Games', books: '📚 Books', auto: '🚗 Automotive'
+  };
+  document.getElementById('sectionTitle').textContent = titles[cat] || '🛍️ Products';
+  const filtered = cat === 'all' ? products : products.filter(p => p.category === cat);
+  renderProducts(filtered);
+  document.getElementById('trendingSection').style.display = cat === 'all' ? '' : 'none';
+}
+
+function filterProducts(query) {
+  const q = query.toLowerCase().trim();
+  if (!q) { filterCategory(currentCategory, null); return; }
+  const filtered = products.filter(p => p.name.toLowerCase().includes(q) || p.category.toLowerCase().includes(q));
+  document.getElementById('sectionTitle').textContent = `🔍 Results for "${query}"`;
+  renderProducts(filtered);
+}
+
+function addToCart(id, btn) {
+  const p = products.find(x => x.id === id);
+  const existing = cart.find(x => x.id === id);
+  if (existing) { existing.qty++; }
+  else { cart.push({ ...p, qty: 1 }); }
+  btn.textContent = '✓ Added!';
+  btn.classList.add('added');
+  setTimeout(() => { btn.textContent = 'Add to Cart 🛒'; btn.classList.remove('added'); }, 1500);
+  updateCartUI();
+  showToast(`🛒 "${p.name.split(' ').slice(0,4).join(' ')}..." added to cart!`);
+}
+
+function updateCartUI() {
+  const total = cart.reduce((s,i) => s + i.qty, 0);
+  const el = document.getElementById('cartCount');
+  el.textContent = total;
+  el.style.display = total > 0 ? 'flex' : 'none';
+  renderCartItems();
+}
+
+function renderCartItems() {
+  const el = document.getElementById('cartItems');
+  const footer = document.getElementById('cartFooter');
+  if (cart.length === 0) {
+    el.innerHTML = '<div class="empty-cart"><div class="empty-icon">🛒</div><p>Your cart is empty!</p><p style="font-size:13px;margin-top:8px;">Add items to get started</p></div>';
+    footer.style.display = 'none';
+    return;
+  }
+  footer.style.display = 'block';
+  el.innerHTML = '';
+  cart.forEach(item => {
+    const div = document.createElement('div');
+    div.className = 'cart-item';
+    div.innerHTML = `
+      <div class="cart-item-img">${item.emoji}</div>
+      <div class="cart-item-info">
+        <div class="cart-item-name">${item.name.split(' ').slice(0,5).join(' ')}...</div>
+        <div class="cart-item-price">${fmtPrice(item.price)}</div>
+        <div class="cart-item-qty">
+          <button class="qty-btn" onclick="changeQty(${item.id},-1)">−</button>
+          <span class="qty-val">${item.qty}</span>
+          <button class="qty-btn" onclick="changeQty(${item.id},1)">+</button>
+        </div>
+      </div>
+      <button class="remove-item" onclick="removeFromCart(${item.id})">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+      </button>`;
+    el.appendChild(div);
+  });
+  const totalAmt = cart.reduce((s,i) => s + i.price * i.qty, 0);
+  document.getElementById('cartTotal').textContent = fmtPrice(totalAmt);
+}
+
+function changeQty(id, delta) {
+  const item = cart.find(x => x.id === id);
+  if (!item) return;
+  item.qty += delta;
+  if (item.qty <= 0) cart = cart.filter(x => x.id !== id);
+  updateCartUI();
+}
+
+function removeFromCart(id) {
+  cart = cart.filter(x => x.id !== id);
+  updateCartUI();
+}
+
+function openCart() {
+  document.getElementById('cartSidebar').classList.add('open');
+  document.getElementById('cartOverlay').classList.add('open');
+}
+
+function closeCart() {
+  document.getElementById('cartSidebar').classList.remove('open');
+  document.getElementById('cartOverlay').classList.remove('open');
+}
+
+function toggleWishlistItem(id, btn) {
+  if (wishlist.has(id)) { wishlist.delete(id); btn.classList.remove('liked'); btn.querySelector('svg').setAttribute('fill','none'); btn.querySelector('svg').setAttribute('stroke','#999'); showToast('💔 Removed from wishlist'); }
+  else { wishlist.add(id); btn.classList.add('liked'); btn.querySelector('svg').setAttribute('fill','#e53935'); btn.querySelector('svg').setAttribute('stroke','#e53935'); showToast('❤️ Added to wishlist'); }
+}
+
+function toggleWishlist() { showToast(`❤️ You have ${wishlist.size} items in wishlist!`); }
+
+function checkout() {
+  if (cart.length === 0) { showToast('🛒 Your cart is empty!'); return; }
+  const total = cart.reduce((s,i) => s + i.price * i.qty, 0);
+  closeCart();
+  cart = [];
+  updateCartUI();
+  showToast(`🎉 Order placed! Total: ${fmtPrice(total)}. Thank you for shopping at Whisele!`);
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// Hero slider
+const slides = document.querySelectorAll('.hero-slide');
+const dotsEl = document.getElementById('heroDots');
+slides.forEach((_,i) => {
+  const d = document.createElement('button');
+  d.className = 'hero-dot' + (i===0?' active':'');
+  d.onclick = () => goSlide(i);
+  dotsEl.appendChild(d);
+});
+
+function goSlide(i) {
+  slideIndex = i;
+  document.getElementById('heroSlides').style.transform = `translateX(-${i*100}%)`;
+  document.querySelectorAll('.hero-dot').forEach((d,j) => d.classList.toggle('active', j===i));
+  clearInterval(slideTimer);
+  slideTimer = setInterval(() => changeSlide(1), 5000);
+}
+
+function changeSlide(dir) {
+  goSlide((slideIndex + dir + slides.length) % slides.length);
+}
+slideTimer = setInterval(() => changeSlide(1), 5000);
+
+// Countdown
+function updateCountdown() {
+  const now = new Date();
+  const end = new Date(); end.setHours(23,59,59,0);
+  const diff = end - now;
+  const h = Math.floor(diff/3600000), m = Math.floor((diff%3600000)/60000), s = Math.floor((diff%60000)/1000);
+  document.getElementById('ch').textContent = String(h).padStart(2,'0');
+  document.getElementById('cm').textContent = String(m).padStart(2,'0');
+  document.getElementById('cs').textContent = String(s).padStart(2,'0');
+}
+updateCountdown(); setInterval(updateCountdown, 1000);
+
+// Init
+filterCategory('all', document.querySelector('.nav-link'));
+renderTrending();
+</script>
+</body>
+</html>
